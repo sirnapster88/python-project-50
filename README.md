@@ -5,4 +5,6 @@
 
 [![Gendiff](https://github.com/sirnapster88/python-project-50/actions/workflows/gendiff_workflow_check.yml/badge.svg)](https://github.com/sirnapster88/python-project-50/actions/workflows/gendiff_workflow_check.yml)
 
+[![Coverage](https://sonarcloud.io/api/project_badges/measure?project=sirnapster88_python-project-50&metric=coverage)](https://sonarcloud.io/summary/new_code?id=sirnapster88_python-project-50)
+
 ![Local GIF](./animations/gendiff.gif)
