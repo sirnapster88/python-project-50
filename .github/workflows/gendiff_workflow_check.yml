@@ -20,4 +20,4 @@ jobs:
         
     - name: Run tests
       run: |
-        pytest -v tests/
+        python -m pytest tests/ -v --cov=gendiff --cov-report=term-missing
