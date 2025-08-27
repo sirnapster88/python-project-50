@@ -27,6 +27,6 @@ jobs:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
          args: >
-          -Dsonar.projectKey=gendiff
-          -Dsonar.sources=gendiff
+          -sonar.projectKey=sirnapster88_python-project-50
+          -sonar.organization=sirnapster88
           -Dsonar.python.coverage.reportPaths=coverage.xml
