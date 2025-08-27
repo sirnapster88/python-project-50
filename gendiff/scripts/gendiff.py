@@ -14,6 +14,12 @@ def generate_diff(file1_path, file2_path):
     file2_path = 'file2.json'
     data1 = load_files(file1_path)
     data2 = load_files(file2_path)
+    
+    # print(f"file1_data:")
+    # print(json.dumps(data1))
+    # print(f"file2_data:")
+    # print(json.dumps(data2))
+    
     diff = find_difference(data1, data2)
     return diff
 
@@ -28,7 +34,7 @@ def find_difference(dict1,dict2):
         value2 = dict2.get(key)
         if key not in dict2:
             result.append(f"  - {key}: {value1}")
-        elif key not in dict2:
+        elif key not in dict1:
             result.append(f"  + {key}: {value2}")
         elif value1 != value2:
             result.append(f"  - {key}: {value1}")
