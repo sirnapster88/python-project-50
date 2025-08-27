@@ -14,8 +14,7 @@ jobs:
         with:
           python-version: '3.12'
       - name: Run linter
-        run: |
-          make lint
+        run: make lint
       # - name: SonarQubeScan
       #   uses: SonarSource/sonarqube-scan-action@v5
       #   env:
