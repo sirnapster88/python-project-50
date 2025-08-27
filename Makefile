@@ -8,7 +8,7 @@ package-install:
 	uv tool install dist/*.whl
 
 test:
-	uv run pytest --cov=gendiff --cov-report xml
+	uv run pytest
 
 lint:
 	uv run ruff check gendiff
