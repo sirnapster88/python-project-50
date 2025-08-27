@@ -1,5 +1,5 @@
-import argparse, json
-from pathlib import Path
+import argparse
+import json
 
 
 def load_files(file_path):
