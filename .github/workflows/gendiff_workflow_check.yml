@@ -29,5 +29,4 @@ jobs:
          args: >
           -Dsonar.projectKey=gendiff
           -Dsonar.sources=gendiff
-          -Dsonar.tests=tests
           -Dsonar.python.coverage.reportPaths=coverage.xml

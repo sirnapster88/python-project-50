@@ -17,4 +17,4 @@ check:
 	test lint
 
 test-coverage:
-	uv run pytest --cov=gendiff --cov-coverage xml
+	uv run pytest --cov=gendiff --cov-report xml
