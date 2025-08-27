@@ -25,7 +25,8 @@ jobs:
       env:
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
       with:
-        args: >
-          -Dsonar.projectKey=hexlet-boilerplates_python-package
-          -Dsonar.organization=hexlet-boilerplates
+         args: >
+          -Dsonar.projectKey=gendiff
+          -Dsonar.sources=gendiff
+          -Dsonar.tests=tests
           -Dsonar.python.coverage.reportPaths=coverage.xml
