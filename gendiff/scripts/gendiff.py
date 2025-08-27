@@ -10,6 +10,7 @@ def load_files(file_path):
 
 
 def generate_diff(file1_path, file2_path):
+    """Функция выполняющая сравнение"""
     data1 = load_files(file1_path)
     data2 = load_files(file2_path)
     
