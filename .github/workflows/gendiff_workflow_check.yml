@@ -13,11 +13,6 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
         
-    - name: Run linter
+    - name: Run linter and tests
       run: |
-        pip install ruff
-        ruff check gendiff/
-        
-    - name: Run tests
-      run: |
-        pytest tests/
+        make check
