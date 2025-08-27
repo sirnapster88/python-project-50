@@ -17,4 +17,4 @@ check:
 	test lint
 
 test-coverage:
-	uv run python -m pytest --cov=python-project-50/ --cov-report=xml tests/
+	uv run pytest --cov=gendiff --cov-report xml
