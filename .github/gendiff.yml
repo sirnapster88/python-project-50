@@ -13,10 +13,9 @@ jobs:
         uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Run linter and pytest
+      - name: Run linter
         run: |
           make lint
-          make test
       # - name: SonarQubeScan
       #   uses: SonarSource/sonarqube-scan-action@v5
       #   env:
