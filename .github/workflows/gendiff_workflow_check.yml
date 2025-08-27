@@ -19,7 +19,8 @@ jobs:
 
     - name: Run test coverage
       run: |
-          make test-coverage
+          python -m pytest --cov=gendiff --cov-report=xml --cov-report=term-missing tests/
+          
     - name: SonarQubeScan
       uses: SonarSource/sonarqube-scan-action@v5
       env:
