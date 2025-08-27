@@ -10,8 +10,6 @@ def load_files(file_path):
 
 
 def generate_diff(file1_path, file2_path):
-    file1_path = 'file1.json'
-    file2_path = 'file2.json'
     data1 = load_files(file1_path)
     data2 = load_files(file2_path)
     

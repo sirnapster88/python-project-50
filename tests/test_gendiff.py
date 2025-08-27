@@ -1,0 +1,116 @@
+import os
+import json
+import shutil
+import tempfile
+import pytest
+from pathlib import Path
+from gendiff.scripts.gendiff import generate_diff
+
+@pytest.fixture
+def temp_json_files():
+    temp_dir =  tempfile.mkdtemp(dir='tests')
+    test_file1_path = os.path.join(temp_dir,'test_file1.json')
+    test_file2_path = os.path.join(temp_dir,'test_file2.json')
+    yield test_file1_path, test_file2_path
+    shutil.rmtree(temp_dir)
+
+
+def create_json_test_file(test_file_path, data):
+    with open(test_file_path, 'w') as f:
+        json.dump(data, f)
+
+
+def test_equal_files(temp_json_files):
+    """Тестирование одинаковых файлов"""
+    test_file1_path, test_file2_path = temp_json_files
+    data = {
+        "host": "hexlet.io",
+        "timeout": 50,
+        "proxy": "123.234.53.22",
+        "follow": False
+    }
+    create_json_test_file(test_file1_path, data)
+    create_json_test_file(test_file2_path, data)
+    result = generate_diff(test_file1_path, test_file2_path)
+    expected = """{
+    follow: False
+    host: hexlet.io
+    proxy: 123.234.53.22
+    timeout: 50
+}"""
+    assert result == expected
+
+def test_diff_values(temp_json_files):
+    """Тестирование файлов, где отличаются значения"""
+    test_file1_path, test_file2_path = temp_json_files
+    data1 = {"timeout": 50,
+            "follow": False
+        }
+    data2 = {"timeout": 40,
+            "follow": True
+        }
+    create_json_test_file(test_file1_path, data1)
+    create_json_test_file(test_file2_path, data2)
+    result = generate_diff(test_file1_path, test_file2_path)
+    expected = """{
+  - follow: False
+  + follow: True
+  - timeout: 50
+  + timeout: 40
+}"""
+    assert result == expected
+
+def test_diff_keys(temp_json_files):
+    """Тестирование файлов, где отличаются ключи"""
+    test_file1_path, test_file2_path = temp_json_files
+    data1 = {
+        "host": "hexlet.io",
+        "timeout": 50,
+        "proxy": "123.234.53.22",
+    }
+    data2 = {
+        "host": "hexlet.io",
+        "timeout": 30,
+        "follow": False
+    }
+    create_json_test_file(test_file1_path, data1)
+    create_json_test_file(test_file2_path, data2)
+    result = generate_diff(test_file1_path, test_file2_path)
+    expected = """{
+  + follow: False
+    host: hexlet.io
+  - proxy: 123.234.53.22
+  - timeout: 50
+  + timeout: 30
+}"""
+    assert result == expected
+
+def test_empty_nonempty(temp_json_files):
+    """Тестирование файлов, где один из файлов пустой"""
+    test_file1_path, test_file2_path = temp_json_files
+    data1 = {}
+    data2 = {
+        "host": "hexlet.io",
+        "timeout": 30,
+        "follow": False
+    }
+    create_json_test_file(test_file1_path, data1)
+    create_json_test_file(test_file2_path, data2)
+    result = generate_diff(test_file1_path, test_file2_path)
+    expected = """{
+  + follow: False
+  + host: hexlet.io
+  + timeout: 30
+}"""
+    assert result == expected
+
+def test_empty_files(temp_json_files):
+    """Тестирование файлов, где оба файла пустые"""
+    test_file1_path, test_file2_path = temp_json_files
+    data1 = {}
+    data2 = {}
+    create_json_test_file(test_file1_path, data1)
+    create_json_test_file(test_file2_path, data2)
+    result = generate_diff(test_file1_path, test_file2_path)
+    expected = "{\n\n}"
+    assert result == expected
