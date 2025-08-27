@@ -14,7 +14,7 @@ lint:
 	uv run ruff check gendiff
 
 check:
-	test lint
+	test --cov=gendiff --cov-report xml lint
 
 test-coverage:
 	uv run pytest --cov=gendiff --cov-report xml
