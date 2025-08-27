@@ -1,4 +1,4 @@
-name: Python CI
+name: Python-Project-50
 
 on:
   - push
@@ -16,8 +16,7 @@ jobs:
       - name: Run linter and test
         run: |
           make lint
-        # run: |
-        #   make test
+          make test
       - name: SonarQubeScan
         uses: SonarSource/sonarqube-scan-action@v5
         env:
