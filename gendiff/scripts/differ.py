@@ -1,7 +1,8 @@
 from gendiff.scripts.load_files import load_files
+from gendiff.scripts.formatters.stylish import format_stylish
 
 def find_difference(dict1,dict2):
-    """Функция осуществляющая поиск различий в двух плоских файлах"""
+    """Функция осуществляющая логику сравнения"""
     all_keys = sorted(set(dict1.keys()) | set(dict2.keys()))
     result = []
 
@@ -9,20 +10,31 @@ def find_difference(dict1,dict2):
         value1 = dict1.get(key)
         value2 = dict2.get(key)
         if key not in dict2:
-            result.append(f"  - {key}: {value1}")
+            result.append({'key': key, 
+                           'type': 'removed', 
+                           'value': value1})
         elif key not in dict1:
-            result.append(f"  + {key}: {value2}")
+            result.append({'key': key,
+                           'type': 'added',
+                           'value': value2})
+        elif isinstance(value1, dict) and isinstance(value2, dict):
+            result.append({'key': key,
+                           'type': 'nested',
+                           'children': find_difference(value1,value2)})
         elif value1 != value2:
-            result.append(f"  - {key}: {value1}")
-            result.append(f"  + {key}: {value2}")
+            result.append({'key': key,
+                           'type': 'changed',
+                           'old_value': value1,
+                           'new_value':value2})
         else:
-            result.append(f"    {key}: {value1}")
+            result.append({'key': key,
+                           'type': 'unchanged',
+                           'value': value1})
+    return result
 
-    return "{\n" + "\n".join(result) + "\n}"
-
-def generate_diff(file1_path, file2_path):
-    """Функция выполняющая загрузку данных из файлов и выполняет сравнение"""
+def generate_diff(file1_path, file2_path, format_name = 'stylish'):
+    """Функция выполняющая основное сравнение"""
     data1 = load_files(file1_path)
     data2 = load_files(file2_path)
     diff = find_difference(data1, data2)
-    return diff
+    return format_stylish(diff)

@@ -6,6 +6,7 @@ import tempfile
 import pytest
 from pathlib import Path
 from gendiff.scripts.differ import generate_diff
+from gendiff.scripts.load_files import load_files
 
 @pytest.fixture
 def temp_json_files():
@@ -143,3 +144,19 @@ def test_yaml_files():
     finally:
         os.unlink(file1)
         os.unlink(file2)
+
+def test_recursive_diff():
+    file1 = load_files("file1.json")
+    file2 = load_files("file2.json")
+
+    result = generate_diff(file1, file2)
+
+    assert "common: {" in result
+    assert "group1: {" in result
+    assert "group2: {" in result
+    assert "setting1: Value 1" in result
+    assert "setting2: 200" in result
+    assert "setting3: true" in result
+    assert "setting3: null" in result
+    assert "doge: {" in result
+    assert "wow: so much" in result
