@@ -35,7 +35,7 @@ def test_equal_files(temp_json_files):
     create_json_test_file(test_file2_path, data)
     result = generate_diff(test_file1_path, test_file2_path)
     expected = """{
-    follow: False
+    follow: false
     host: hexlet.io
     proxy: 123.234.53.22
     timeout: 50
@@ -55,8 +55,8 @@ def test_diff_values(temp_json_files):
     create_json_test_file(test_file2_path, data2)
     result = generate_diff(test_file1_path, test_file2_path)
     expected = """{
-  - follow: False
-  + follow: True
+  - follow: false
+  + follow: true
   - timeout: 50
   + timeout: 40
 }"""
@@ -79,7 +79,7 @@ def test_diff_keys(temp_json_files):
     create_json_test_file(test_file2_path, data2)
     result = generate_diff(test_file1_path, test_file2_path)
     expected = """{
-  + follow: False
+  + follow: false
     host: hexlet.io
   - proxy: 123.234.53.22
   - timeout: 50
@@ -100,7 +100,7 @@ def test_empty_nonempty(temp_json_files):
     create_json_test_file(test_file2_path, data2)
     result = generate_diff(test_file1_path, test_file2_path)
     expected = """{
-  + follow: False
+  + follow: false
   + host: hexlet.io
   + timeout: 30
 }"""
@@ -123,7 +123,7 @@ def test_yaml_files():
         host: hexlet.io
         timeout: 50
         proxy: 123.234.53.22
-        follow: False
+        follow: false
         """)
         file1 = f1.name
     
@@ -131,7 +131,7 @@ def test_yaml_files():
         f2.write("""
         host: hexlet.io
         timeout: 30
-        follow: False
+        follow: false
         """)
         file2 = f2.name
     
@@ -140,16 +140,14 @@ def test_yaml_files():
         assert 'timeout: 50' in result
         assert 'timeout: 30' in result
         assert 'proxy: 123.234.53.22' in result
-        assert 'follow: False' in result
+        assert 'follow: false' in result
     finally:
         os.unlink(file1)
         os.unlink(file2)
 
 def test_recursive_diff():
-    file1 = load_files("file1.json")
-    file2 = load_files("file2.json")
 
-    result = generate_diff(file1, file2)
+    result = generate_diff('file1.json', 'file2.json')
 
     assert "common: {" in result
     assert "group1: {" in result

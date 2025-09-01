@@ -1,14 +1,16 @@
 import json
 import yaml
+from pathlib import Path
 
 def load_files(file_path):
     """Функция осуществляющая чтение и парсинг файлов"""
-    with open(file_path) as f:
+    file_path = Path(file_path) 
+    with open(file_path, 'r') as f:
         data = f.read()
     
-    if file_path.endswith('.json'):
+    if file_path.suffix == '.json':
         return parse_json(data)
-    elif file_path.endswith('.yaml') or file_path.endswith('.yml'):
+    elif file_path.suffix == '.yaml' or file_path.suffix == '.yml':
         return parse_yaml(data)
     
 def parse_json(data):

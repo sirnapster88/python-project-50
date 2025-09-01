@@ -45,5 +45,7 @@ def format_value(value, depth):
         return "\n".join(lines)
     elif value is None:
         return 'null'
+    elif isinstance(value, bool):
+        return str(value).lower()
     else:
         return str(value)
