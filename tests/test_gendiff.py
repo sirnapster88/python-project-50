@@ -5,8 +5,8 @@ import shutil
 import tempfile
 import pytest
 from pathlib import Path
-from gendiff.scripts.differ import generate_diff
-from gendiff.scripts.load_files import load_files
+from gendiff.differ import generate_diff
+from gendiff.load_files import load_files
 
 @pytest.fixture
 def temp_json_files():

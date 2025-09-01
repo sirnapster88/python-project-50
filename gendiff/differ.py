@@ -1,4 +1,4 @@
-from gendiff.scripts.load_files import load_files
+from gendiff.load_files import load_files
 from gendiff.scripts.formatters.stylish import format_stylish
 
 def find_difference(dict1,dict2):
@@ -20,12 +20,12 @@ def find_difference(dict1,dict2):
         elif isinstance(value1, dict) and isinstance(value2, dict):
             result.append({'key': key,
                            'type': 'nested',
-                           'children': find_difference(value1,value2)})
+                           'children': find_difference(value1, value2)})
         elif value1 != value2:
             result.append({'key': key,
                            'type': 'changed',
                            'old_value': value1,
-                           'new_value':value2})
+                           'new_value': value2})
         else:
             result.append({'key': key,
                            'type': 'unchanged',
