@@ -8,3 +8,5 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=sirnapster88_python-project-50&metric=coverage)](https://sonarcloud.io/summary/new_code?id=sirnapster88_python-project-50)
 
 ![Local GIF](./animations/gendiff.gif)
+
+![Local GIF](./animations/gendiff_yml.gif)
