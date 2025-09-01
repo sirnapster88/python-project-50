@@ -24,11 +24,5 @@ def generate_diff(file1_path, file2_path):
     """Функция выполняющая загрузку данных из файлов и выполняет сравнение"""
     data1 = load_files(file1_path)
     data2 = load_files(file2_path)
-    
-    # print(f"file1_data:")
-    # print(json.dumps(data1))
-    # print(f"file2_data:")
-    # print(json.dumps(data2))
-    
     diff = find_difference(data1, data2)
     return diff

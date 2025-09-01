@@ -8,7 +8,7 @@ from gendiff.scripts.differ import generate_diff
 
 
 def test_yaml_files():
-    with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml') as f1:
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False) as f1:
         f1.write("""
         host: hexlet.io
         timeout: 50
@@ -32,6 +32,8 @@ def test_yaml_files():
         assert 'proxy: 123.234.53.22' in result
         assert 'follow: False' in result
     finally:
-        os.unlink(file1)
-        os.unlink(file2)
+        if os.path.exists(file1):
+            os.unlink(file1)
+        if os.path.exists(file2):
+            os.unlink(file2)
 

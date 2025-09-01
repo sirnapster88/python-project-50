@@ -117,7 +117,7 @@ def test_empty_files(temp_json_files):
     assert result == expected
 
 def test_yaml_files():
-    with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml') as f1:
+    with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False) as f1:
         f1.write("""
         host: hexlet.io
         timeout: 50

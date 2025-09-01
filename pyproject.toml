@@ -16,8 +16,13 @@ build-backend = "hatchling.build"
 [tool.hatch.build.targets.wheel]
 packages = ["gendiff"]
 
+[dependency-groups]
+dev = [
+    "pytest-cov>=6.2.1",
+]
+
 [project.optional-dependencies]
 dev = ["pytest", "pytest-cov", "ruff"]
 
 [project.scripts]
-gendiff = "gendiff.scripts.gendiff:main"
+gendiff = "gendiff:main"
