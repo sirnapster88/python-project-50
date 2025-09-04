@@ -7,6 +7,7 @@ import pytest
 from pathlib import Path
 from gendiff.differ import generate_diff
 from gendiff.load_files import load_files
+from gendiff.scripts.formatters.plain import format_plain, format_value_plain
 
 @pytest.fixture
 def temp_json_files():
@@ -158,3 +159,27 @@ def test_recursive_diff():
     assert "setting3: null" in result
     assert "doge: {" in result
     assert "wow: so much" in result
+
+
+def test_format_value_plain():
+    assert format_value_plain("text") == "'text'"
+    assert format_value_plain(123) == "123"
+    assert format_value_plain(True) == "true"
+    assert format_value_plain({'a':1}) == "[complex value]"
+
+
+def test_format_plain():
+    diff = [
+        {
+            'key': 'common',
+            'type': 'nested',
+            'children':[
+                {'key': 'setting1', 'type': 'unchanged', 'value': 'Value1'},
+                {'key': 'setting2', 'type':'removed', 'value': '200'},
+                {'key': 'setting3', 'type':'updated', 'old_value': True, 'new_value': None}
+            ]
+        }
+    ]
+    result = format_plain(diff)
+    assert "Property common.setting2 was removed" in result
+    assert "Property common.setting3 was updated. From true to null" in result
