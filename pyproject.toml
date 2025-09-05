@@ -25,4 +25,4 @@ dev = [
 dev = ["pytest", "pytest-cov", "ruff"]
 
 [project.scripts]
-gendiff = "gendiff:main"
+gendiff = "gendiff.scripts.main:main"

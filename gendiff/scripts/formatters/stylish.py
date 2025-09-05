@@ -19,7 +19,7 @@ def format_stylish(diff, depth=0):
             value = format_value(node['value'], depth + 1)
             lines.append(f"{indent}  - {key}: {value}")
 
-        if type_ == 'changed':
+        if type_ == 'updated':
             old_value = format_value(node['old_value'], depth + 1)
             new_value = format_value(node['new_value'], depth + 1)
             lines.append(f"{indent}  - {key}: {old_value}")
