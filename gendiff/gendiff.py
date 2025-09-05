@@ -20,19 +20,9 @@ def find_difference(dict1,dict2):
                            'type': 'added',
                            'value': value2})
         elif isinstance(value1, dict) and isinstance(value2, dict):
-            children = find_difference(value1, value2)
-            if any(child['type'] != 'unchanged' for child in children):
-                result.append({
-                    'key': key,
-                    'type': 'nested',
-                    'children': children
-                })
-            else:
-                result.append({
-                    'key': key,
-                    'type': 'unchanged',
-                    'value': value1
-                })
+            result.append({'key': key,
+                           'type': 'nested',
+                           'children': find_difference(value1, value2)})
         elif value1 != value2:
             result.append({'key': key,
                            'type': 'updated',
