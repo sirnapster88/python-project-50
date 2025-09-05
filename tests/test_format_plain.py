@@ -21,5 +21,5 @@ def test_format_plain():
         }
     ]
     result = format_plain(diff)
-    assert "Property common.setting2 was removed" in result
-    assert "Property common.setting3 was updated. From true to null" in result
+    assert "Property 'common.setting2' was removed" in result
+    assert "Property 'common.setting3' was updated. From true to null" in result

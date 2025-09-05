@@ -12,6 +12,8 @@ def load_files(file_path):
         return parse_json(data)
     elif file_path.suffix == '.yaml' or file_path.suffix == '.yml':
         return parse_yaml(data)
+    else:
+        raise ValueError(f"Unsupported file format: {file_path.suffix}")
     
 def parse_json(data):
     return json.loads(data)

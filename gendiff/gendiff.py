@@ -25,7 +25,7 @@ def find_difference(dict1,dict2):
                            'children': find_difference(value1, value2)})
         elif value1 != value2:
             result.append({'key': key,
-                           'type': 'updated',
+                           'type': 'changed',
                            'old_value': value1,
                            'new_value': value2})
         else:
