@@ -18,10 +18,10 @@ def format_plain(diff, path=''):
             lines.append(f"Property '{current_path}' was removed")
 
         elif node['type'] == 'updated':
-            old_value = format_value_plain(node['old_value'])
-            new_value = format_value_plain(node['new_value'])
-            message = f"Property '{current_path}' was updated. From {old_value} to {new_value}"
-            lines.append(message)
+            ol_val = format_value_plain(node['old_value'])
+            nw_val = format_value_plain(node['new_value'])
+            m = f"Property '{current_path}' was updated. From {ol_val} to {nw_val}"
+            lines.append(m)
 
     return "\n".join([line for line in lines if line])
 
