@@ -14,3 +14,5 @@
 ![Local GIF](./animations/gendiff_tree.gif)
 
 ![Local GIF](./animations/gendiff_plain.gif)
+
+![Local GIF](./animations/gendiff_json.gif)

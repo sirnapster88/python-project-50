@@ -11,7 +11,7 @@ test:
 	uv run pytest test/
 
 lint:
-	uv run ruff check gendiff
+	uv run ruff check .
 
 check:
 	test lint

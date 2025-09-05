@@ -1,6 +1,7 @@
 from gendiff.load_files import load_files
 from gendiff.scripts.formatters.stylish import format_stylish
 from gendiff.scripts.formatters.plain import format_plain
+from gendiff.scripts.formatters.json import format_json
 
 def find_difference(dict1,dict2):
     """Функция осуществляющая логику сравнения"""
@@ -43,3 +44,5 @@ def generate_diff(file1_path, file2_path, format_name = 'stylish'):
         return format_stylish(diff)
     if format_name == 'plain':
         return format_plain(diff)
+    if format_name == 'json':
+        return format_json(diff)
