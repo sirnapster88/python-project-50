@@ -5,7 +5,9 @@ from gendiff.gendiff import generate_diff
 
 
 def test_yaml_files():
-    with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False) as f1:
+    with tempfile.NamedTemporaryFile(mode='w', 
+                                     suffix='.yaml', 
+                                     delete=False) as f1:
         f1.write("""
         host: hexlet.io
         timeout: 50
@@ -14,7 +16,9 @@ def test_yaml_files():
         """)
         file1 = f1.name
 
-    with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False) as f2:
+    with tempfile.NamedTemporaryFile(mode='w', 
+                                     suffix='.yaml', 
+                                     delete=False) as f2:
         f2.write("""
         host: hexlet.io
         timeout: 30
