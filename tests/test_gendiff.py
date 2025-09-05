@@ -1,9 +1,12 @@
-import os
 import json
+import os
 import shutil
 import tempfile
+
 import pytest
+
 from gendiff.gendiff import generate_diff
+
 
 @pytest.fixture
 def temp_json_files():

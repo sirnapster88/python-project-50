@@ -10,7 +10,7 @@ def format_stylish(diff, depth=0):
             lines.append(f"{indent}    {key}: {{")
             lines.append(format_stylish(node['children'], depth + 1))
             lines.append(f"{indent}    }}")
-        
+
         if type_ == 'added':
             value = format_value(node['value'], depth + 1)
             lines.append(f"{indent}  + {key}: {value}")
@@ -28,12 +28,12 @@ def format_stylish(diff, depth=0):
         if type_ == 'unchanged':
             value = format_value(node['value'], depth + 1)
             lines.append(f"{indent}    {key}: {value}")
-        
+
     if depth == 0:
         return "{\n" + "\n".join(lines) + "\n}"
     else:
         return "\n".join(lines)
-    
+
 def format_value(value, depth):
     if isinstance(value, dict):
         indent = '    ' * depth

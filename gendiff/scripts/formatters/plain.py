@@ -8,7 +8,7 @@ def format_plain(diff, path=''):
             nested_result = format_plain(node['children'], current_path)
             if nested_result:
                 lines.extend(nested_result.split('\n'))
-        
+
         elif node['type'] == 'added':
             value = format_value_plain(node['value'])
             lines.append(f"Property '{current_path}' was added with value: {value}")
@@ -35,5 +35,5 @@ def format_value_plain(value):
         return f"'{value}'"
     else:
         return str(value)
-    
+
 

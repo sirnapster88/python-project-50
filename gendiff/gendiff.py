@@ -1,7 +1,8 @@
 from gendiff.load_files import load_files
-from gendiff.scripts.formatters.stylish import format_stylish
-from gendiff.scripts.formatters.plain import format_plain
 from gendiff.scripts.formatters.json import format_json
+from gendiff.scripts.formatters.plain import format_plain
+from gendiff.scripts.formatters.stylish import format_stylish
+
 
 def find_difference(dict1,dict2):
     """Функция осуществляющая логику сравнения"""
@@ -12,8 +13,8 @@ def find_difference(dict1,dict2):
         value1 = dict1.get(key)
         value2 = dict2.get(key)
         if key not in dict2:
-            result.append({'key': key, 
-                           'type': 'removed', 
+            result.append({'key': key,
+                           'type': 'removed',
                            'value': value1})
         elif key not in dict1:
             result.append({'key': key,
@@ -39,7 +40,7 @@ def generate_diff(file1_path, file2_path, format_name = 'stylish'):
     data1 = load_files(file1_path)
     data2 = load_files(file2_path)
     diff = find_difference(data1, data2)
-    
+
     if format_name == 'stylish':
         return format_stylish(diff)
     if format_name == 'plain':

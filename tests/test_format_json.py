@@ -1,4 +1,5 @@
 import json
+
 from gendiff.scripts.formatters.json import format_json
 
 

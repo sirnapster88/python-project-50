@@ -19,6 +19,7 @@ packages = ["gendiff"]
 [dependency-groups]
 dev = [
     "pytest-cov>=6.2.1",
+    "ruff>=0.12.10",
 ]
 
 [project.optional-dependencies]
@@ -26,3 +27,24 @@ dev = ["pytest", "pytest-cov", "ruff"]
 
 [project.scripts]
 gendiff = "gendiff.scripts.main:main"
+
+[tool.ruff]
+line-length = 88
+select = [
+    "E",   # pycodestyle errors
+    "W",   # pycodestyle warnings
+    "F",   # pyflakes
+    "I",   # isort
+    "C",   # flake8-comprehensions
+    "B",   # flake8-bugbear
+    "UP",  # pyupgrade
+    "YTT", # flake8-2020
+]
+
+[tool.ruff.lint]
+ignore = [
+    "E501",  # line too long - handled by black
+]
+
+[tool.ruff.format]
+quote-style = "double"

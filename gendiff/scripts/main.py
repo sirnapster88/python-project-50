@@ -1,4 +1,5 @@
 import argparse
+
 from gendiff.gendiff import generate_diff
 
 """В данном модуле описан интерфейс командной строки программы"""
@@ -16,7 +17,7 @@ def main():
 
     result = generate_diff(args.first_file, args.second_file, args.format)
     print(result)
-    
+
 
 if __name__ == '__main__':
     main()

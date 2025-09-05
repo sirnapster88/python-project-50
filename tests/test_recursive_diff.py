@@ -1,5 +1,6 @@
 from gendiff.gendiff import generate_diff
 
+
 def test_recursive_diff():
 
     result = generate_diff('file1.json', 'file2.json')
