@@ -1,6 +1,6 @@
 import os
 import tempfile
-from gendiff.differ import generate_diff
+from gendiff.gendiff import generate_diff
 
 def test_yaml_files():
     with tempfile.NamedTemporaryFile(mode='w', suffix='.yaml', delete=False) as f1:

@@ -1,3 +1,3 @@
-from .scripts.gendiff import main
+from .scripts.main import main
 
 __all__ = ['main']

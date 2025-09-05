@@ -1,4 +1,4 @@
-from gendiff.differ import generate_diff
+from gendiff.gendiff import generate_diff
 
 def test_recursive_diff():
 

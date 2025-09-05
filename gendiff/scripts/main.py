@@ -1,5 +1,5 @@
 import argparse
-from gendiff.differ import generate_diff
+from gendiff.gendiff import generate_diff
 
 """В данном модуле описан интерфейс командной строки программы"""
 

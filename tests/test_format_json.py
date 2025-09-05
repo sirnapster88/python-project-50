@@ -22,3 +22,4 @@ def test_format_json():
     assert len(parsed_result) == 1
     assert parsed_result[0]['key'] == 'common'
     assert parsed_result[0]['type'] == 'nested'
+    assert len(parsed_result[0]['children']) == 3
