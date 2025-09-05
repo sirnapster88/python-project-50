@@ -4,6 +4,7 @@ from gendiff.gendiff import generate_diff
 
 """В данном модуле описан интерфейс командной строки программы"""
 
+
 def main():
     parser = argparse.ArgumentParser(
         description='Compares two configuration files and shows a difference.',
@@ -11,7 +12,7 @@ def main():
 
     parser.add_argument('first_file', help='')
     parser.add_argument('second_file', help='')
-    parser.add_argument('-f', '--format', help='set format of output', default= 'stylish')
+    parser.add_argument('-f', '--format', help='set format of output', default='stylish')
 
     args = parser.parse_args()
 

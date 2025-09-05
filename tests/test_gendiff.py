@@ -10,9 +10,9 @@ from gendiff.gendiff import generate_diff
 
 @pytest.fixture
 def temp_json_files():
-    temp_dir =  tempfile.mkdtemp(dir='tests')
-    test_file1_path = os.path.join(temp_dir,'test_file1.json')
-    test_file2_path = os.path.join(temp_dir,'test_file2.json')
+    temp_dir = tempfile.mkdtemp(dir='tests')
+    test_file1_path = os.path.join(temp_dir, 'test_file1.json')
+    test_file2_path = os.path.join(temp_dir, 'test_file2.json')
     yield test_file1_path, test_file2_path
     shutil.rmtree(temp_dir)
 
@@ -42,6 +42,7 @@ def test_equal_files(temp_json_files):
 }"""
     assert result == expected
 
+
 def test_diff_values(temp_json_files):
     """Тестирование файлов, где отличаются значения"""
     test_file1_path, test_file2_path = temp_json_files
@@ -61,6 +62,7 @@ def test_diff_values(temp_json_files):
   + timeout: 40
 }"""
     assert result == expected
+
 
 def test_diff_keys(temp_json_files):
     """Тестирование файлов, где отличаются ключи"""
@@ -87,6 +89,7 @@ def test_diff_keys(temp_json_files):
 }"""
     assert result == expected
 
+
 def test_empty_nonempty(temp_json_files):
     """Тестирование файлов, где один из файлов пустой"""
     test_file1_path, test_file2_path = temp_json_files
@@ -105,6 +108,7 @@ def test_empty_nonempty(temp_json_files):
   + timeout: 30
 }"""
     assert result == expected
+
 
 def test_empty_files(temp_json_files):
     """Тестирование файлов, где оба файла пустые"""

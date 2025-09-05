@@ -34,11 +34,12 @@ def format_stylish(diff, depth=0):
     else:
         return "\n".join(lines)
 
+
 def format_value(value, depth):
     if isinstance(value, dict):
         indent = '    ' * depth
         lines = ['{']
-        for k,v in value.items():
+        for k, v in value.items():
             formatted_value = format_value(v, depth + 1)
             lines.append(f"{indent}    {k}: {formatted_value}")
         lines.append(f"{indent}}}")

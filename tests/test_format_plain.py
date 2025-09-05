@@ -5,7 +5,7 @@ def test_format_value_plain():
     assert format_value_plain("text") == "'text'"
     assert format_value_plain(123) == "123"
     assert format_value_plain(True) == "true"
-    assert format_value_plain({'a':1}) == "[complex value]"
+    assert format_value_plain({'a': 1}) == "[complex value]"
 
 
 def test_format_plain():
@@ -13,10 +13,10 @@ def test_format_plain():
         {
             'key': 'common',
             'type': 'nested',
-            'children':[
-                {'key': 'setting1', 'type':'unchanged', 'value': 'Value1'},
-                {'key': 'setting2', 'type':'removed', 'value': '200'},
-                {'key': 'setting3', 'type':'updated', 'old_value': True, 'new_value': None}
+            'children':[ 
+                {'key': 'setting1', 'type': 'unchanged', 'value': 'Value1'},
+                {'key': 'setting2', 'type': 'removed', 'value': '200'},
+                {'key': 'setting3', 'type': 'updated', 'old_value': True, 'new_value': None}
             ]
         }
     ]

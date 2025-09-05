@@ -17,8 +17,10 @@ def load_files(file_path):
     else:
         raise ValueError(f"Unsupported file format: {file_path.suffix}")
 
+
 def parse_json(data):
     return json.loads(data)
+
 
 def parse_yaml(data):
     return yaml.safe_load(data)
