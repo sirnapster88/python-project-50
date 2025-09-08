@@ -1,4 +1,6 @@
-__pycache__
+__pycache__/
+gendiff/__pycache__
+formatters/__pycache__
 my_venv/
 .pytest_cache/
 .venv/
