@@ -2,7 +2,8 @@ from gendiff.gendiff import generate_diff
 
 
 def test_recursive_dif():
-    result = generate_diff('tests/test_data/file1.json', 'tests/test_data/file2.json')
+    result = generate_diff('tests/test_data/file1.json', 
+                           'tests/test_data/file2.json')
 
     assert "common: {" in result
     assert "group1: {" in result
