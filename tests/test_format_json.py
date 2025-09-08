@@ -1,6 +1,6 @@
 import json
 
-from gendiff.scripts.formatters.json import format_json
+from gendiff.formatters.json import format_json
 
 
 def test_format_json():

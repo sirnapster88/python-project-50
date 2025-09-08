@@ -1,7 +1,7 @@
 from gendiff.load_files import load_files
-from gendiff.scripts.formatters.json import format_json
-from gendiff.scripts.formatters.plain import format_plain
-from gendiff.scripts.formatters.stylish import format_stylish
+from gendiff.formatters.json import format_json
+from gendiff.formatters.plain import format_plain
+from gendiff.formatters.stylish import format_stylish
 
 
 def find_difference(dict1, dict2):

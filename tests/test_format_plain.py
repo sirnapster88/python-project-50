@@ -1,4 +1,4 @@
-from gendiff.scripts.formatters.plain import format_plain, format_value_plain
+from gendiff.formatters.plain import format_plain, format_value_plain
 
 
 def test_format_value_plain():

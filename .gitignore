@@ -1,4 +1,10 @@
-__pycache__/
+__pycache__
 my_venv/
 .pytest_cache/
 .venv/
+file1.json
+file2.json
+file1.yml
+file2.yml
+.coverage
+coverage.xml
