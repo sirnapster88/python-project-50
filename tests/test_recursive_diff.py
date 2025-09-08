@@ -1,8 +1,3 @@
-import tempfile
-import pytest
-import shutil
-import json
-import os
 from gendiff.gendiff import generate_diff
 
 
