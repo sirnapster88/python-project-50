@@ -1,7 +1,4 @@
-import json
-import pytest
 from gendiff.find_diff import generate_diff
-from gendiff.parser import load_files
 
 
 def test_equal_files():
@@ -13,7 +10,6 @@ def test_equal_files():
         expected = f.read()
         assert result == expected
     
-
 
 def test_diff_values():
     """Тестирование файлов, где отличаются значения"""
