@@ -2,6 +2,7 @@ from .json import format_json
 from .plain import format_plain
 from .stylish import format_stylish
 
+
 def get_formatter(format_name):
     formatters = {
         'stylish': format_stylish,
@@ -11,4 +12,4 @@ def get_formatter(format_name):
     return formatters[format_name]
 
 
-__all__ = ['get_formatter','format_stylish', 'format_plain', 'format_json']
+__all__ = ['get_formatter', 'format_stylish', 'format_plain', 'format_json']
