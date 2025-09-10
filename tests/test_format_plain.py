@@ -1,4 +1,5 @@
-from gendiff.formatters.plain import format_plain, format_value_plain
+from gendiff.formatters.plain import format_value_plain
+from gendiff.scripts.gendiff import generate_diff
 
 
 def test_format_value_plain():
@@ -9,20 +10,9 @@ def test_format_value_plain():
 
 
 def test_format_plain():
-    diff = [
-        {
-            'key': 'common',
-            'type': 'nested',
-            'children': [
-                {'key': 'setting1', 'type': 'unchanged', 'value': 'Value1'},
-                {'key': 'setting2', 'type': 'removed', 'value': '200'},
-                {'key': 'setting3', 
-                 'type': 'updated', 
-                 'old_value': True,
-                 'new_value': None}
-            ]
-        }
-    ]
-    result = format_plain(diff)
-    assert "Property 'common.setting2' was removed" in result
-    assert "Property 'common.setting3' was updated. From true to null" in result
+    test_file1 = 'tests/test_data/input/plain/file1.json'
+    test_file2 = 'tests/test_data/input/plain/file2.json'
+    result = generate_diff(test_file1, test_file2, 'plain')
+    with open('tests/test_data/expected/expected_plain.txt', 'r') as f:
+        expected = f.read()
+        assert result == expected

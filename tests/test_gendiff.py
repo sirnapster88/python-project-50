@@ -1,123 +1,56 @@
 import json
-import os
-import shutil
-import tempfile
-
 import pytest
-
 from gendiff.find_diff import generate_diff
+from gendiff.parser import load_files
 
 
-@pytest.fixture
-def temp_json_files():
-    temp_dir = tempfile.mkdtemp(dir='tests')
-    test_file1_path = os.path.join(temp_dir, 'test_file1.json')
-    test_file2_path = os.path.join(temp_dir, 'test_file2.json')
-    yield test_file1_path, test_file2_path
-    shutil.rmtree(temp_dir)
-
-
-def create_json_test_file(test_file_path, data):
-    with open(test_file_path, 'w') as f:
-        json.dump(data, f)
-
-
-def test_equal_files(temp_json_files):
+def test_equal_files():
     """Тестирование одинаковых файлов"""
-    test_file1_path, test_file2_path = temp_json_files
-    data = {
-        "host": "hexlet.io",
-        "timeout": 50,
-        "proxy": "123.234.53.22",
-        "follow": False
-    }
-    create_json_test_file(test_file1_path, data)
-    create_json_test_file(test_file2_path, data)
-    result = generate_diff(test_file1_path, test_file2_path)
-    expected = """{
-    follow: false
-    host: hexlet.io
-    proxy: 123.234.53.22
-    timeout: 50
-}"""
-    assert result == expected
+    test_file1 = 'tests/test_data/input/equal/file1.json'
+    test_file2 = 'tests/test_data/input/equal/file1.json'
+    result = generate_diff(test_file1, test_file2)
+    with open('tests/test_data/expected/expected_equal_files.txt', 'r') as f:
+        expected = f.read()
+        assert result == expected
+    
 
 
-def test_diff_values(temp_json_files):
+def test_diff_values():
     """Тестирование файлов, где отличаются значения"""
-    test_file1_path, test_file2_path = temp_json_files
-    data1 = {"timeout": 50,
-            "follow": False
-        }
-    data2 = {"timeout": 40,
-            "follow": True
-        }
-    create_json_test_file(test_file1_path, data1)
-    create_json_test_file(test_file2_path, data2)
-    result = generate_diff(test_file1_path, test_file2_path)
-    expected = """{
-  - follow: false
-  + follow: true
-  - timeout: 50
-  + timeout: 40
-}"""
-    assert result == expected
+    test_file1 = 'tests/test_data/input/diff_values/file1.json'
+    test_file2 = 'tests/test_data/input/diff_values/file2.json'
+    result = generate_diff(test_file1, test_file2)
+    with open('tests/test_data/expected/expected_diff_values.txt', 'r') as f:
+        expected = f.read()
+        assert result == expected
 
 
-def test_diff_keys(temp_json_files):
+def test_diff_keys():
     """Тестирование файлов, где отличаются ключи"""
-    test_file1_path, test_file2_path = temp_json_files
-    data1 = {
-        "host": "hexlet.io",
-        "timeout": 50,
-        "proxy": "123.234.53.22",
-    }
-    data2 = {
-        "host": "hexlet.io",
-        "timeout": 30,
-        "follow": False
-    }
-    create_json_test_file(test_file1_path, data1)
-    create_json_test_file(test_file2_path, data2)
-    result = generate_diff(test_file1_path, test_file2_path)
-    expected = """{
-  + follow: false
-    host: hexlet.io
-  - proxy: 123.234.53.22
-  - timeout: 50
-  + timeout: 30
-}"""
-    assert result == expected
+    test_file1 = 'tests/test_data/input/diff_keys/file1.json'
+    test_file2 = 'tests/test_data/input/diff_keys/file2.json'
+    result = generate_diff(test_file1, test_file2)
+    with open('tests/test_data/expected/expected_diff_keys.txt', 'r') as f:
+        expected = f.read()
+        assert result == expected
 
 
-def test_empty_nonempty(temp_json_files):
+def test_empty_nonempty():
     """Тестирование файлов, где один из файлов пустой"""
-    test_file1_path, test_file2_path = temp_json_files
-    data1 = {}
-    data2 = {
-        "host": "hexlet.io",
-        "timeout": 30,
-        "follow": False
-    }
-    create_json_test_file(test_file1_path, data1)
-    create_json_test_file(test_file2_path, data2)
-    result = generate_diff(test_file1_path, test_file2_path)
-    expected = """{
-  + follow: false
-  + host: hexlet.io
-  + timeout: 30
-}"""
-    assert result == expected
+    test_file1 = 'tests/test_data/input/empty_noempty/file1.json'
+    test_file2 = 'tests/test_data/input/empty_noempty/file2.json'
+    result = generate_diff(test_file1, test_file2)
+    with open('tests/test_data/expected/expected_empty_noempty.txt', 'r') as f:
+        expected = f.read()
+        assert result == expected
 
 
-def test_empty_files(temp_json_files):
+def test_empty_files():
     """Тестирование файлов, где оба файла пустые"""
-    test_file1_path, test_file2_path = temp_json_files
-    data1 = {}
-    data2 = {}
-    create_json_test_file(test_file1_path, data1)
-    create_json_test_file(test_file2_path, data2)
-    result = generate_diff(test_file1_path, test_file2_path)
-    expected = "{\n\n}"
-    assert result == expected
+    test_file1 = 'tests/test_data/input/empty/file1.json'
+    test_file2 = 'tests/test_data/input/empty/file2.json'
+    result = generate_diff(test_file1, test_file2)
+    with open('tests/test_data/expected/expected_empty.txt', 'r') as f:
+        expected = f.read()
+        assert result == expected
 
