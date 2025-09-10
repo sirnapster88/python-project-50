@@ -1,7 +1,7 @@
 import os
 import tempfile
 
-from gendiff.gendiff import generate_diff
+from gendiff.find_diff import generate_diff
 
 
 def test_yaml_files():

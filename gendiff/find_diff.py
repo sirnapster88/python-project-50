@@ -1,4 +1,4 @@
-from gendiff.load_files import load_files
+from gendiff.parser import load_files
 from gendiff.formatters.json import format_json
 from gendiff.formatters.plain import format_plain
 from gendiff.formatters.stylish import format_stylish

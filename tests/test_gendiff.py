@@ -5,7 +5,7 @@ import tempfile
 
 import pytest
 
-from gendiff.gendiff import generate_diff
+from gendiff.find_diff import generate_diff
 
 
 @pytest.fixture
