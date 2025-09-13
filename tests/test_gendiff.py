@@ -64,7 +64,7 @@ from gendiff.find_diff import generate_diff
                             'tests/test_data/expected/expected_diff_keys.txt'),
                             ('tests/test_data/input/empty_noempty/file1.json',
                              'tests/test_data/input/empty_noempty/file2.json',
-                             'tests/test_data/expected/expected_empty_noempty.txt'),
+                             'tests/test_data/expected/exp_empty_noempty.txt'),
                             ('tests/test_data/input/empty/file1.json',
                              'tests/test_data/input/empty/file1.json',
                              'tests/test_data/expected/expected_empty.txt')])
