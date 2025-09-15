@@ -29,8 +29,8 @@ EMPTY = INPUT / 'empty'
                            (EMPTY / 'file1.json',
                             INPUT / 'empty/file1.json',
                             EXPECTED / 'expected_empty.txt'),
-                           (INPUT / 'file1_tree.json',
-                            INPUT / 'file2_tree.json',
+                           (TEST_DATA / 'file1_tree.json',
+                            TEST_DATA / 'file2_tree.json',
                             EXPECTED / 'expected_recursive.txt')])
 def test_gendiff(file1, file2, expected):
     result = generate_diff(file1, file2)

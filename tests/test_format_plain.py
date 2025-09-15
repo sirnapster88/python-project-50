@@ -11,8 +11,8 @@ def test_format_value_plain():
 
 
 @pytest.mark.parametrize("file1,file2, expected",
-                         [('tests/test_data/input/test_file1.json',
-                           'tests/test_data/input/test_file2.json',
+                         [('tests/test_data/file1_tree.json',
+                           'tests/test_data/file2_tree.json',
                            'tests/test_data/expected/expected_plain.txt')])
 def test_format_plain(file1, file2, expected):
     result = generate_diff(file1, file2, 'plain')
