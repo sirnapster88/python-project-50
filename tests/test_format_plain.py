@@ -1,3 +1,4 @@
+import pytest
 from gendiff.formatters.plain import format_value_plain
 from gendiff.scripts.gendiff import generate_diff
 
@@ -8,11 +9,12 @@ def test_format_value_plain():
     assert format_value_plain(True) == "true"
     assert format_value_plain({'a': 1}) == "[complex value]"
 
-
-def test_format_plain():
-    test_file1 = 'tests/test_data/input/plain/file1.json'
-    test_file2 = 'tests/test_data/input/plain/file2.json'
-    result = generate_diff(test_file1, test_file2, 'plain')
-    with open('tests/test_data/expected/expected_plain.txt', 'r') as f:
-        expected = f.read()
-        assert result == expected
+@pytest.mark.parametrize("file1,file2, expected",
+                         [('tests/test_data/input/test_file1.json',
+                           'tests/test_data/input/test_file2.json',
+                           'tests/test_data/expected/expected_plain.txt')])
+def test_format_plain(file1, file2, expected):
+    result = generate_diff(file1, file2, 'plain')
+    with open(expected) as f:
+        exp = f.read()
+        assert result == exp

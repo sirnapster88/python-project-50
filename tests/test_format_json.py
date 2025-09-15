@@ -1,10 +1,12 @@
+import pytest
 from gendiff.scripts.gendiff import generate_diff
 
-
-def test_format_json():
-    test_file1 = 'tests/test_data/input/json/file1.json'
-    test_file2 = 'tests/test_data/input/json/file2.json'
-    result = generate_diff(test_file1, test_file2, 'json')
-    with open('tests/test_data/expected/expected_json.txt', 'r') as f:
-        expected = f.read()
-        assert result == expected
+@pytest.mark.parametrize("file1,file2,expected",
+                         [('tests/test_data/input/test_file1.json',
+                           'tests/test_data/input/test_file2.json',
+                           'tests/test_data/expected/expected_json.txt')])
+def test_format_json(file1, file2, expected):
+    result = generate_diff(file1, file2, 'json')
+    with open(expected) as f:
+        exp = f.read()
+        assert result == exp
