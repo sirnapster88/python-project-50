@@ -13,9 +13,8 @@ EMPTY_NOEMPTY = INPUT / 'empty_noempty'
 EMPTY = INPUT / 'empty'
 
 
-
 @pytest.mark.parametrize("file1,file2,format_name,expected",
-                         #тестируем формат по умолчанию(stylish)
+                         # тестируем формат по умолчанию(stylish)
                          [(EQUAL / 'file1.json',
                            EQUAL / 'file2.json',
                            'stylish',
@@ -40,17 +39,17 @@ EMPTY = INPUT / 'empty'
                             TEST_DATA / 'file2_tree.json',
                             'stylish',
                             EXPECTED / 'expected_recursive.txt'),
-                            #тестируем json-форматтер
+                            # тестируем json-форматтер
                             (TEST_DATA / 'file1_tree.json',
                              TEST_DATA / 'file2_tree.json',
                              'json',
                             EXPECTED / 'expected_json.txt'),
-                            #тестируем yaml-форматтер
+                            # тестируем yaml-форматтер
                             (TEST_DATA / 'file1.yml',
                              TEST_DATA / 'file2.yml',
                             'stylish',
                             EXPECTED / 'expected_yaml.txt'),
-                            #тестируем plain-форматтер
+                            # тестируем plain-форматтер
                             (TEST_DATA / 'file1_tree.json',
                              TEST_DATA / 'file2_tree.json',
                              'plain',
