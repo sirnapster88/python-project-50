@@ -55,10 +55,10 @@ EMPTY = INPUT / 'empty'
                              'plain',
                              EXPECTED / 'expected_plain.txt')])
 def test_gendiff(file1, file2, format_name, expected):
-  if format == 'stylish':
-    result = generate_diff(file1, file2)
-  else:
-    result = generate_diff(file1, file2, format_name)
-  with open(expected) as f:
-    exp = f.read()
-  assert result == exp
+    if format == 'stylish':
+        result = generate_diff(file1, file2)
+    else:
+        result = generate_diff(file1, file2, format_name)
+    with open(expected) as f:
+        exp = f.read()
+    assert result == exp
